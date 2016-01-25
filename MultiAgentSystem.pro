@@ -16,5 +16,7 @@ SOURCES += main.cpp \
 HEADERS += \
     openglwindow.h \
     gamewindow.h \
-    tools.h
+    tools.h \
+    cpplinq.hpp
+
 

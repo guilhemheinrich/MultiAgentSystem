@@ -4,7 +4,7 @@
 #include <QtGui/QOpenGLShaderProgram>
 #include <QtGui>
 #include <QTimer>
-
+#include "cpplinq.hpp"
 
 #include "openglwindow.h"
 
