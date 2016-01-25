@@ -6,6 +6,11 @@
 GameWindow::GameWindow() : _playerProgram(0)
 {
     _overMind = new OverMind();
+
+    _renderTimer = new QTimer();
+    connect(_renderTimer, SIGNAL(timeout()), this, SLOT(renderNow()));
+    _renderTimer->start(30);
+
     _tick = new QTimer();
     connect(_tick, SIGNAL(timeout()), _overMind, SLOT(updateAgent()));
     _tick->start(30);
@@ -42,15 +47,10 @@ void GameWindow::initPlayerShaderPrograme()
     _playerVbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     _playerVbo.bind();
 
-    _playerVao.bind();
-
-    _playerProgram->setAttributeBuffer(_playerPosAttr, GL_FLOAT, 0, 3, 0);
-
     _playerProgram->enableAttributeArray(_playerPosAttr);
     _playerProgram->enableAttributeArray(_playerTeamAttr);
 
     _playerVao.release();
-
     _playerProgram->release();
 }
 
@@ -69,7 +69,8 @@ void GameWindow::render(){
     QVector<int> team;
     for (AbstractAgent * agent : _overMind->allAgents())
     {
-        vec<<agent->position();
+        qDebug() << agent->position();
+        vec << agent->position();
         team << agent->team();
     }
 
@@ -85,11 +86,11 @@ void GameWindow::render(){
 
     _playerVbo.allocate(playerSize + teamSize);
     _playerVbo.write(0, vec.constData(), playerSize);
-    _playerVbo.write(teamSize, team.constData(), playerSize + teamSize);
+    _playerVbo.write(playerSize, team.constData(), teamSize);
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glDrawArrays(GL_POINTS, 0, vec.size());
-    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+    //glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 
     _playerVao.release();
     _playerProgram->release();

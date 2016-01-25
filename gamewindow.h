@@ -26,6 +26,7 @@ private:
 
     void initPlayerShaderPrograme();
 
+    QTimer *_renderTimer;
     QTimer *_tick;
 
 public:
