@@ -10,9 +10,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     openglwindow.cpp \
-    gamewindow.cpp
+    gamewindow.cpp \
+    tools.cpp
 
 HEADERS += \
     openglwindow.h \
-    gamewindow.h
+    gamewindow.h \
+    tools.h
 
