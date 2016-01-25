@@ -14,6 +14,10 @@ private:
     QVector3D _position;
 public:
     AbstractAgent(int);
+    QVector2D direction() const;
+    void setDirection(const QVector2D &direction);
+    QVector3D position() const;
+    void setPosition(const QVector3D &position);
 };
 
 #endif // ABSTRACTAGENT_H

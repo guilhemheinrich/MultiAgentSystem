@@ -23,3 +23,8 @@ HEADERS += \
     cpplinq.hpp \
     abstractagent.h \
     overmind.h
+RESOURCES += gestionnaire.qrc
+
+DISTFILES += \
+    player.fsh \
+    player.vsh

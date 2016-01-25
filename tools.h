@@ -10,8 +10,8 @@ class Tools
 public:
     Tools();
 
-    static bool isInRange(QVector3D x, QVector3D y, float dist);
-    static void rotOnZ(QVector2D &x, float angle);
+    static bool isInRange(QVector3D position1, QVector3D position2, float dist);
+    static void rotOnZ(QVector2D &direction, float angle);
 };
 
 #endif // TOOLS_H

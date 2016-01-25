@@ -13,9 +13,18 @@ class GameWindow : public OpenGLWindow
 {
     Q_OBJECT
 private:
+    QOpenGLShaderProgram *_playerProgram;
+    QOpenGLVertexArrayObject _playerVao;
+    QOpenGLBuffer _playerVbo;
+
+    GLuint _playerPosAttr, _playerTeamAttr, _playerCenterUni;
+    GLuint _matrixUniform;
     OverMind *_overMind;
+
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
+
+    void initPlayerShaderPrograme();
 
 public:
     GameWindow();
