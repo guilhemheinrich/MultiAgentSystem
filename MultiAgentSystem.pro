@@ -26,5 +26,5 @@ HEADERS += \
 RESOURCES += gestionnaire.qrc
 
 DISTFILES += \
-    player.fsh \
-    player.vsh
+    player.vert \
+    player.frag
