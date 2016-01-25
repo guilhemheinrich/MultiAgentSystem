@@ -6,6 +6,9 @@
 GameWindow::GameWindow() : _playerProgram(0)
 {
     _overMind = new OverMind();
+    _tick = new QTimer();
+    connect(_tick, SIGNAL(timeout()), _overMind, SLOT(updateAgent()));
+    _tick->start(30);
 }
 
 GameWindow::~GameWindow()
@@ -57,7 +60,6 @@ void GameWindow::render(){
     const qreal retinaScale = devicePixelRatio();
     glViewport(0, 0, width() * retinaScale, height() * retinaScale);
 
-
     glClear(GL_COLOR_BUFFER_BIT);
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 
@@ -71,11 +73,8 @@ void GameWindow::render(){
         team << agent->team();
     }
 
-    qDebug() << team;
-
     _playerProgram->bind();
     _playerProgram->setUniformValue(_matrixUniform, matrix);
-
 
     _playerVao.bind();
     _playerVbo.bind();
@@ -88,22 +87,23 @@ void GameWindow::render(){
     _playerVbo.write(0, vec.constData(), playerSize);
     _playerVbo.write(teamSize, team.constData(), playerSize + teamSize);
 
-
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glDrawArrays(GL_POINTS, 0, vec.size());
     glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 
     _playerVao.release();
     _playerProgram->release();
-
-
-
 }
 
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
-
+    switch(event->key())
+    {
+    case Qt::Key_Escape:
+        close();
+        break;
+    }
 }
 
 void GameWindow::keyReleaseEvent(QKeyEvent *event)

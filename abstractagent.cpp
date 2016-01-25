@@ -34,11 +34,6 @@ int AbstractAgent::team() const
     return _team;
 }
 
-void AbstractAgent::setTeam(int team)
-{
-    _team = team;
-}
-
 void AbstractAgent::update()
 {
     _position += _direction * _moveSpeed;

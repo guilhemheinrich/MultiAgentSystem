@@ -26,6 +26,8 @@ private:
 
     void initPlayerShaderPrograme();
 
+    QTimer *_tick;
+
 public:
     GameWindow();
     ~GameWindow();
@@ -34,7 +36,6 @@ public:
 
 
 public slots:
-
 };
 
 #endif // GAMEWINDOW_H
