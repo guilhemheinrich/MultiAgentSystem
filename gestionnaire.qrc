@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>player.fsh</file>
-        <file>player.vsh</file>
+        <file>player.frag</file>
+        <file>player.vert</file>
 
     </qresource>
 </RCC>

@@ -21,8 +21,8 @@ void GameWindow::initPlayerShaderPrograme()
 {
     _playerProgram = new QOpenGLShaderProgram(this);
 
-    _playerProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/player.vsh");
-    _playerProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/player.fsh");
+    _playerProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/player.vert");
+    _playerProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/player.frag");
 
     _playerProgram->link();
 
@@ -78,9 +78,10 @@ void GameWindow::render(){
     size_t playerSize = vec.size()*sizeof(QVector3D), teamSize = team.size()*sizeof(int);
     _playerProgram->setAttributeBuffer(_playerPosAttr, GL_FLOAT, 0, 3, 0);
     _playerProgram->setAttributeBuffer(_playerTeamAttr, GL_FLOAT, playerSize, 1, 0);
+
     _playerVbo.allocate(playerSize + teamSize);
     _playerVbo.write(0, vec.constData(), playerSize);
-    _playerVbo.write(teamSize, team.constData(), playerSize+teamSize);
+    _playerVbo.write(teamSize, team.constData(), playerSize + teamSize);
 
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
