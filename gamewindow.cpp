@@ -65,8 +65,13 @@ void GameWindow::render(){
 
     QVector<QVector3D> vec;
     QVector<int> team;
-    for (AbstractAgent * agent : _overMind->allAgents()) {vec<<agent->position();team<<agent->team();}
+    for (AbstractAgent * agent : _overMind->allAgents())
+    {
+        vec<<agent->position();
+        team << agent->team();
+    }
 
+    qDebug() << team;
 
     _playerProgram->bind();
     _playerProgram->setUniformValue(_matrixUniform, matrix);
