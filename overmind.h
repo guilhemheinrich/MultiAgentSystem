@@ -17,6 +17,7 @@ public:
     OverMind();
     std::vector<AbstractAgent *> allAgents() const;
     void setAllAgents(const std::vector<AbstractAgent *> &allAgents);
+    void updateAgent();
 };
 
 #endif // OVERMIND_H

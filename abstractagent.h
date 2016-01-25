@@ -20,6 +20,7 @@ public:
     void setPosition(const QVector3D &position);
     int team() const;
     void setTeam(int team);
+    void update();
 };
 
 #endif // ABSTRACTAGENT_H
