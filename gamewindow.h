@@ -4,17 +4,16 @@
 #include <QtGui/QOpenGLShaderProgram>
 #include <QtGui>
 #include <QTimer>
-#include "cpplinq.hpp"
 
 #include "openglwindow.h"
-
+#include "overmind.h"
 
 
 class GameWindow : public OpenGLWindow
 {
     Q_OBJECT
 private:
-
+    OverMind *_overMind;
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
 
