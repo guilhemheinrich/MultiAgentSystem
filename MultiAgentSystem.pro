@@ -11,12 +11,15 @@ TEMPLATE = app
 SOURCES += main.cpp \
     openglwindow.cpp \
     gamewindow.cpp \
-    tools.cpp
+    tools.cpp \
+    abstractagent.cpp \
+    overmind.cpp
 
 HEADERS += \
     openglwindow.h \
     gamewindow.h \
     tools.h \
-    cpplinq.hpp
-
-
+    cpplinq.hpp \
+    cpplinq.hpp \
+    abstractagent.h \
+    overmind.h

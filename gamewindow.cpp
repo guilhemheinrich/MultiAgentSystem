@@ -5,8 +5,7 @@
 
 GameWindow::GameWindow()
 {
-
-
+    _overMind = new OverMind();
 }
 
 GameWindow::~GameWindow()
