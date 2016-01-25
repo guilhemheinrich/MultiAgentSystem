@@ -57,13 +57,16 @@ void GameWindow::render(){
     const qreal retinaScale = devicePixelRatio();
     glViewport(0, 0, width() * retinaScale, height() * retinaScale);
 
+
     glClear(GL_COLOR_BUFFER_BIT);
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 
     glClearColor(0.1, 0.1, 0.1, 1.0);
 
     QVector<QVector3D> vec;
-    for (AbstractAgent * agent : _overMind->allAgents()) vec<<agent->position();
+    QVector<int> team;
+    for (AbstractAgent * agent : _overMind->allAgents()) {vec<<agent->position();team<<agent->team();}
+
 
     _playerProgram->bind();
     _playerProgram->setUniformValue(_matrixUniform, matrix);
@@ -72,9 +75,12 @@ void GameWindow::render(){
     _playerVao.bind();
     _playerVbo.bind();
 
-    size_t playerSize = vec.size()*sizeof(QVector3D);
-    _playerVbo.allocate(playerSize);
+    size_t playerSize = vec.size()*sizeof(QVector3D), teamSize = team.size()*sizeof(int);
+    _playerProgram->setAttributeBuffer(_playerPosAttr, GL_FLOAT, 0, 3, 0);
+    _playerProgram->setAttributeBuffer(_playerTeamAttr, GL_FLOAT, playerSize, 1, 0);
+    _playerVbo.allocate(playerSize + teamSize);
     _playerVbo.write(0, vec.constData(), playerSize);
+    _playerVbo.write(teamSize, team.constData(), playerSize+teamSize);
 
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

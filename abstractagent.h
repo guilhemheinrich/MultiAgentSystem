@@ -18,6 +18,8 @@ public:
     void setDirection(const QVector2D &direction);
     QVector3D position() const;
     void setPosition(const QVector3D &position);
+    int team() const;
+    void setTeam(int team);
 };
 
 #endif // ABSTRACTAGENT_H

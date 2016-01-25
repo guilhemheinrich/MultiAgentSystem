@@ -20,6 +20,16 @@ void AbstractAgent::setPosition(const QVector3D &position)
     _position = position;
 }
 
+int AbstractAgent::team() const
+{
+    return _team;
+}
+
+void AbstractAgent::setTeam(int team)
+{
+    _team = team;
+}
+
 AbstractAgent::AbstractAgent(int team)
 {
     _team = team;
