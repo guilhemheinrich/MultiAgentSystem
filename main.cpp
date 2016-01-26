@@ -7,7 +7,6 @@ int main(int argc, char *argv[])
 {
     QGuiApplication a(argc, argv);
     QSurfaceFormat format;
-    format.setSamples(16);
 
     GameWindow window;
     window.setFormat(format);

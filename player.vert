@@ -1,21 +1,16 @@
 attribute highp vec4 posAttr;
-attribute highp int teamAttr;
+attribute highp float teamAttr;
 uniform mat4 matrix;
 varying highp vec4 col;
 
+uniform bool b = true;
 void main()
 {
-    gl_PointSize = 20;
+    gl_PointSize = 20.0;
     gl_Position = posAttr * matrix;
     col = vec4(1,0,0,1);
-    switch(teamAttr){
-    case 1 :
-        col = vec4(0,1,0,1);
-        break;
-    case 2 :
-        col = vec4(1,0,0,1);
-        break;
-    }
+
+    if (teamAttr == 1.0) col = vec4(0,0,1,1);
 
 }
 
