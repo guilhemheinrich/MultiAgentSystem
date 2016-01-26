@@ -6,6 +6,14 @@
 GameWindow::GameWindow() : _playerProgram(0)
 {
     _overMind = new OverMind();
+
+    _renderTimer = new QTimer();
+    connect(_renderTimer, SIGNAL(timeout()), this, SLOT(renderNow()));
+    _renderTimer->start(30);
+
+    _tick = new QTimer();
+    connect(_tick, SIGNAL(timeout()), _overMind, SLOT(updateAgent()));
+    _tick->start(30);
 }
 
 GameWindow::~GameWindow()
@@ -15,6 +23,10 @@ GameWindow::~GameWindow()
 void GameWindow::initialize()
 {
     initPlayerShaderPrograme();
+    QVector2D dir(0,1);
+    qDebug()<<"dir before rotation : "<<dir;
+    Tools::rotOnZ(dir, 1.65);
+    qDebug()<<" and after : "<< dir;
 }
 
 void GameWindow::initPlayerShaderPrograme()
@@ -39,15 +51,10 @@ void GameWindow::initPlayerShaderPrograme()
     _playerVbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     _playerVbo.bind();
 
-    _playerVao.bind();
-
-    _playerProgram->setAttributeBuffer(_playerPosAttr, GL_FLOAT, 0, 3, 0);
-
     _playerProgram->enableAttributeArray(_playerPosAttr);
     _playerProgram->enableAttributeArray(_playerTeamAttr);
 
     _playerVao.release();
-
     _playerProgram->release();
 }
 
@@ -57,20 +64,22 @@ void GameWindow::render(){
     const qreal retinaScale = devicePixelRatio();
     glViewport(0, 0, width() * retinaScale, height() * retinaScale);
 
-
     glClear(GL_COLOR_BUFFER_BIT);
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 
     glClearColor(0.1, 0.1, 0.1, 1.0);
 
     QVector<QVector3D> vec;
-    QVector<int> team;
-    for (AbstractAgent * agent : _overMind->allAgents()) {vec<<agent->position();team<<agent->team();}
-
+    QVector<float> team;
+    for (AbstractAgent * agent : _overMind->allAgents())
+    {
+        qDebug() << (float) agent->team();
+        vec << agent->position();
+        team << (float) agent->team();
+    }
 
     _playerProgram->bind();
     _playerProgram->setUniformValue(_matrixUniform, matrix);
-
 
     _playerVao.bind();
     _playerVbo.bind();
@@ -81,24 +90,23 @@ void GameWindow::render(){
 
     _playerVbo.allocate(playerSize + teamSize);
     _playerVbo.write(0, vec.constData(), playerSize);
-    _playerVbo.write(teamSize, team.constData(), playerSize + teamSize);
+    _playerVbo.write(playerSize, team.constData(), teamSize);
 
-
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glDrawArrays(GL_POINTS, 0, vec.size());
-    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 
     _playerVao.release();
     _playerProgram->release();
-
-
-
 }
 
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
-
+    switch(event->key())
+    {
+    case Qt::Key_Escape:
+        close();
+        break;
+    }
 }
 
 void GameWindow::keyReleaseEvent(QKeyEvent *event)

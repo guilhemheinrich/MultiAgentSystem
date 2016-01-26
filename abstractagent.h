@@ -1,6 +1,7 @@
 #ifndef ABSTRACTAGENT_H
 #define ABSTRACTAGENT_H
 
+#include <qdebug.h>
 #include <QVector2D>
 #include <QVector3D>
 
@@ -19,7 +20,7 @@ public:
     QVector3D position() const;
     void setPosition(const QVector3D &position);
     int team() const;
-    void setTeam(int team);
+    void update();
 };
 
 #endif // ABSTRACTAGENT_H

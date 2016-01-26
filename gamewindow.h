@@ -7,6 +7,7 @@
 
 #include "openglwindow.h"
 #include "overmind.h"
+#include "tools.h"
 
 
 class GameWindow : public OpenGLWindow
@@ -26,6 +27,9 @@ private:
 
     void initPlayerShaderPrograme();
 
+    QTimer *_renderTimer;
+    QTimer *_tick;
+
 public:
     GameWindow();
     ~GameWindow();
@@ -34,7 +38,6 @@ public:
 
 
 public slots:
-
 };
 
 #endif // GAMEWINDOW_H
