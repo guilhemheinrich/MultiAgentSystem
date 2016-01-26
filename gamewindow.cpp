@@ -66,11 +66,11 @@ void GameWindow::render(){
     glClearColor(0.1, 0.1, 0.1, 1.0);
 
     QVector<QVector3D> vec;
-    QVector<int> team;
+    QVector<float> team;
     for (AbstractAgent * agent : _overMind->allAgents())
     {
         vec << agent->position();
-        team << agent->team();
+        team << (float) agent->team();
     }
 
     _playerProgram->bind();
