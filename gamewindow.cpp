@@ -101,6 +101,9 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Escape:
         close();
         break;
+    case Qt::Key_R:
+        _overMind->initializeSimulation();
+        break;
     }
 }
 

@@ -11,8 +11,8 @@ AbstractAgent::AbstractAgent(int team)
     _direction = QVector2D(1, 0);
     Tools::rotOnZ(_direction, angle);
 
-    float x = 0.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX/(1.0f - 0.0f)));
-    float y = 0.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX/(1.0f - 0.0f)));
+    float x = 0.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX/(0.5f - 0.0f)));
+    float y = 0.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX/(0.5f - 0.0f)));
     _position = QVector3D(x, y, 0);
 }
 
