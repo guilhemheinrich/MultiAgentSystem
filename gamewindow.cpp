@@ -13,7 +13,7 @@ GameWindow::GameWindow() : _playerProgram(0)
 
     _tick = new QTimer();
     connect(_tick, SIGNAL(timeout()), _overMind, SLOT(updateAgent()));
-    _tick->start(30);
+    _tick->start(60);
 }
 
 GameWindow::~GameWindow()
@@ -69,7 +69,6 @@ void GameWindow::render(){
     QVector<int> team;
     for (AbstractAgent * agent : _overMind->allAgents())
     {
-        qDebug() << agent->position();
         vec << agent->position();
         team << agent->team();
     }
@@ -88,9 +87,7 @@ void GameWindow::render(){
     _playerVbo.write(0, vec.constData(), playerSize);
     _playerVbo.write(playerSize, team.constData(), teamSize);
 
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glDrawArrays(GL_POINTS, 0, vec.size());
-    //glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 
     _playerVao.release();
     _playerProgram->release();

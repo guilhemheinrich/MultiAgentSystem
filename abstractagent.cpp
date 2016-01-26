@@ -5,8 +5,15 @@ AbstractAgent::AbstractAgent(int team)
     _team = team;
     _moveSpeed = 0.01f;
     _vision = 0.1f;
+
+    float angle = std::rand() % 360 + 1;
+    angle = (angle * M_PI) / 180.0;
     _direction = QVector2D(1, 0);
-    _position = QVector3D(0, 0, 0);
+    Tools::rotOnZ(_direction, angle);
+
+    float x = 0.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX/(1.0f - 0.0f)));
+    float y = 0.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX/(1.0f - 0.0f)));
+    _position = QVector3D(x, y, 0);
 }
 
 QVector2D AbstractAgent::direction() const

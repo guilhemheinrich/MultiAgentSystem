@@ -2,6 +2,7 @@
 
 OverMind::OverMind()
 {
+    std::srand(std::time(NULL));
     for(int i = 0; i < NB_AGENT_OF_TEAM; i++)
     {
         _allAgents.push_back(new AbstractAgent(1));
