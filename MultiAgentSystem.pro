@@ -27,4 +27,6 @@ RESOURCES += gestionnaire.qrc
 
 DISTFILES += \
     player.vert \
-    player.frag
+    player.frag \
+    border.frag \
+    border.vert

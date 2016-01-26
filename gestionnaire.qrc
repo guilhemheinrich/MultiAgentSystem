@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>player.frag</file>
         <file>player.vert</file>
-
+        <file>border.frag</file>
+        <file>border.vert</file>
     </qresource>
 </RCC>

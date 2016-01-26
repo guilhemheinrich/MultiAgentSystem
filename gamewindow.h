@@ -10,10 +10,10 @@
 #include "tools.h"
 
 struct Border{
-    QVector2D upperRight = QVector2D(1.0, 1.0);
-    QVector2D bottomRight = QVector2D(1.0,-1.0);
-    QVector2D bottomLeft = QVector2D(-1.0,-1.0);
-    QVector2D upperLeft = QVector2D(-1.0,1.0);
+    QVector2D upperRight = QVector2D(1.0, 1.0) * 0.5;
+    QVector2D bottomRight = QVector2D(1.0,-1.0)* 0.5;
+    QVector2D bottomLeft = QVector2D(-1.0,-1.0)* 0.5;
+    QVector2D upperLeft = QVector2D(-1.0,1.0)* 0.5  ;
 };
 
 
@@ -25,7 +25,12 @@ private:
     QOpenGLVertexArrayObject _playerVao;
     QOpenGLBuffer _playerVbo;
 
+    QOpenGLShaderProgram *_borderProgram;
+    QOpenGLVertexArrayObject _borderVao;
+    QOpenGLBuffer _borderVbo;
+
     GLuint _playerPosAttr, _playerTeamAttr, _playerCenterUni;
+    GLuint _borderPosAttr, _borderColUni;
     GLuint _matrixUniform;
 
     OverMind *_overMind;
@@ -35,6 +40,7 @@ private:
     void keyReleaseEvent(QKeyEvent *event);
 
     void initPlayerShaderPrograme();
+    void initBorderShaderPrograme();
 
     QTimer *_renderTimer;
     QTimer *_tick;
