@@ -3,7 +3,6 @@ attribute highp float teamAttr;
 uniform mat4 matrix;
 varying highp vec4 col;
 
-uniform float test = 1.0;
 void main()
 {
     gl_PointSize = 20.0;
@@ -14,6 +13,5 @@ void main()
     else
         col = vec4(1,0,0,1);
 
-//    if (test == 1.0) col = vec4(0,0,1,1);
 }
 

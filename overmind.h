@@ -4,6 +4,9 @@
 #include <vector>
 #include <QObject>
 
+#include <iostream>
+#include <ctime>
+
 #include "cpplinq.hpp"
 #include "abstractagent.h"
 

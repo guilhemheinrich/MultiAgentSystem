@@ -13,7 +13,7 @@ GameWindow::GameWindow() : _playerProgram(0)
 
     _tick = new QTimer();
     connect(_tick, SIGNAL(timeout()), _overMind, SLOT(updateAgent()));
-    _tick->start(30);
+    _tick->start(60);
 }
 
 GameWindow::~GameWindow()
@@ -73,7 +73,6 @@ void GameWindow::render(){
     QVector<float> team;
     for (AbstractAgent * agent : _overMind->allAgents())
     {
-        qDebug() << (float) agent->team();
         vec << agent->position();
         team << (float) agent->team();
     }

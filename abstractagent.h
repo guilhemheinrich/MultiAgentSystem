@@ -1,9 +1,16 @@
 #ifndef ABSTRACTAGENT_H
 #define ABSTRACTAGENT_H
 
-#include <qdebug.h>
+#include <iostream>
+
+#include <QDebug>
 #include <QVector2D>
 #include <QVector3D>
+
+#include <ctime>
+#include <cmath>
+
+#include "tools.h"
 
 class AbstractAgent
 {
