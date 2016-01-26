@@ -66,8 +66,17 @@ void GameWindow::render(){
 
     glClear(GL_COLOR_BUFFER_BIT);
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+    glEnable(GL_POINT_SMOOTH);
 
     glClearColor(0.1, 0.1, 0.1, 1.0);
+
+    glBegin(GL_QUADS);
+    glColor3f(0.5f,0.5f, 0.5f);
+    glVertex3f(_border.bottomLeft.x(),_border.bottomLeft.y(),0.0);
+    glVertex3f(_border.upperLeft.x(),_border.upperLeft.y(),0.0);
+    glVertex3f(_border.upperRight.x(),_border.upperRight.y(),0.0);
+    glVertex3f(_border.bottomRight.x(),_border.bottomRight.y(),0.0);
+    glEnd();
 
     QVector<QVector3D> vec;
     QVector<float> team;

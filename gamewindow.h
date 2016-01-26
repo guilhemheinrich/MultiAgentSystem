@@ -9,6 +9,13 @@
 #include "overmind.h"
 #include "tools.h"
 
+struct Border{
+    QVector2D upperRight = QVector2D(1.0, 1.0);
+    QVector2D bottomRight = QVector2D(1.0,-1.0);
+    QVector2D bottomLeft = QVector2D(-1.0,-1.0);
+    QVector2D upperLeft = QVector2D(-1.0,1.0);
+};
+
 
 class GameWindow : public OpenGLWindow
 {
@@ -20,7 +27,9 @@ private:
 
     GLuint _playerPosAttr, _playerTeamAttr, _playerCenterUni;
     GLuint _matrixUniform;
+
     OverMind *_overMind;
+    Border _border;
 
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
