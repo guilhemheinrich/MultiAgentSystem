@@ -118,15 +118,11 @@ void GameWindow::render(){
     _borderVao.bind();
     _borderVbo.bind();
 
-    _borderProgram->enableAttributeArray(_borderPosAttr);
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glDrawArrays(GL_POLYGON, 0, 4);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-        _borderProgram->disableAttributeArray(_borderPosAttr);
-
-            qDebug()<<_borderPosAttr << _borderColUni;
     _borderVao.release();
     _borderProgram->release();
 
@@ -145,8 +141,6 @@ void GameWindow::render(){
     _playerVao.bind();
     _playerVbo.bind();
 
-    _playerProgram->enableAttributeArray(_playerPosAttr);
-    _playerProgram->enableAttributeArray(_playerTeamAttr);
 
     size_t playerSize = vec.size()*sizeof(QVector3D), teamSize = team.size()*sizeof(int);
     _playerProgram->setAttributeBuffer(_playerPosAttr, GL_FLOAT, 0, 3, 0);
@@ -158,8 +152,6 @@ void GameWindow::render(){
 
     glDrawArrays(GL_POINTS, 0, vec.size());
 
-    _playerProgram->disableAttributeArray(_playerPosAttr);
-    _playerProgram->disableAttributeArray(_playerTeamAttr);
     _playerVao.release();
     _playerProgram->release();
 }
