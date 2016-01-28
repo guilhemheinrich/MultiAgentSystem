@@ -1,11 +1,15 @@
-#ifndef BORDER
-#define BORDER
+#ifndef BORDER_H
+#define BORDER_H
 
-struct Border{
-    QVector2D upperRight = QVector2D(1.0, 1.0);
-    QVector2D bottomRight = QVector2D(1.0,-1.0);
-    QVector2D bottomLeft = QVector2D(-1.0,-1.0);
-    QVector2D upperLeft = QVector2D(-1.0,1.0);
+#include <QVector2D>
+
+class Border
+{
+public:
+    static QVector2D const UPPER_RIGHT;
+    static QVector2D const BOTTOM_RIGHT;
+    static QVector2D const BOTTOM_LEFT;
+    static QVector2D const UPPER_LEFT;
 };
-#endif // BORDER
 
+#endif // BORDER_H

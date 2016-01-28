@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     gamewindow.cpp \
     tools.cpp \
     abstractagent.cpp \
-    overmind.cpp
+    overmind.cpp \
+    border.cpp
 
 HEADERS += \
     openglwindow.h \

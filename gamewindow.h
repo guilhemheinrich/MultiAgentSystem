@@ -27,7 +27,6 @@ private:
     GLuint _matrixUniform;
 
     OverMind *_overMind;
-    Border _border;
 
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);

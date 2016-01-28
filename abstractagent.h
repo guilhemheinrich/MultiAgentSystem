@@ -11,13 +11,15 @@
 #include <cmath>
 
 #include "tools.h"
+#include "border.h"
 
 class AbstractAgent
 {
 private:
     int _team;
     float _moveSpeed;
-    float _vision;
+    float _visionRadius;
+    float _collisionRadius;
     QVector2D _direction;
     QVector3D _position;
 public:

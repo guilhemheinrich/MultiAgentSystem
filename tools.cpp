@@ -10,30 +10,29 @@ bool Tools::isInRange(QVector3D position1, QVector3D position2, float dist)
     if (position1.distanceToPoint(position2) < dist)  return true ;
 }
 
-void Tools::rotOnZ(QVector2D &position, float angle)
+QVector2D Tools::rotOnZ(QVector2D direction, float angle)
 {
     QVector2D tmp;
-    tmp.setX(cos(angle)*position.x() - sin(angle)*position.y());
-    tmp.setY(sin(angle)*position.x() + cos(angle)*position.y());
-    position = tmp;
+    tmp.setX(cos(angle)*direction.x() - sin(angle)*direction.y());
+    tmp.setY(sin(angle)*direction.x() + cos(angle)*direction.y());
+    return tmp;
 }
 
-float Tools::distToBorder(QVector2D borderStart, QVector2D borderEnd, QVector2D playerPosition, float radius)
+float Tools::distToBorder(QVector2D borderStart, QVector2D borderEnd, QVector3D playerPosition, float radius)
 {
-    QVector3D border = (QVector3D) (borderEnd - borderStart), playerVec = (QVector3D) (playerPosition - borderStart);
+    QVector3D border = (QVector3D) (borderEnd - borderStart);
+    QVector3D playerVec = (QVector3D) (playerPosition - borderStart);
     QVector3D projectedPoint = QVector3D::dotProduct(border,playerVec) * border / border.length();
     float rayCast = projectedPoint.distanceToPoint(playerVec);
 
-    if (QVector3D::normal(border,playerVec).z() < 0) return (rayCast-radius);
+    if (QVector3D::normal(border,playerVec).z() < 0)
+        return (rayCast-radius);
     return 0;
 }
 
-
-
-//QVector<float> Tools::pseudoDistToBorder(Border border, QVector2D position)
-//{
-
-//}
-
-
-
+QVector2D Tools::randomDirection()
+{
+    float angle = std::rand() % 360 + 1;
+    angle = (angle * M_PI) / 180.0;
+    return rotOnZ(QVector2D(1, 0), angle);
+}
