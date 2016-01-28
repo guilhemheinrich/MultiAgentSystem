@@ -15,7 +15,10 @@ SOURCES += main.cpp \
     abstractagent.cpp \
     overmind.cpp \
     StateAgent/stateagent.cpp \
-    StateAgent/explore.cpp
+    StateAgent/explore.cpp \
+    border.cpp
+    border.cpp
+
 
 HEADERS += \
     openglwindow.h \

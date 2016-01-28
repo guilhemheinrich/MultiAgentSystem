@@ -14,13 +14,11 @@ AbstractAgent::AbstractAgent(int team)
 {
     _team = team;
     _moveSpeed = 0.01f;
-    _vision = 0.1f;
     _state = new Explore();
+    _visionRadius = 0.5f;
+    _collisionRadius = 0.2f;
 
-    float angle = std::rand() % 360 + 1;
-    angle = (angle * M_PI) / 180.0;
-    _direction = QVector2D(1, 0);
-    Tools::rotOnZ(_direction, angle);
+    _direction = Tools::randomDirection();
 
     float x = 0.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX/(0.5f - 0.0f)));
     float y = 0.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX/(0.5f - 0.0f)));
@@ -54,5 +52,11 @@ int AbstractAgent::team() const
 
 void AbstractAgent::update()
 {
+    QVector3D nextPosition = _position + _direction * _moveSpeed;
+    if((Tools::distToBorder(Border::UPPER_LEFT, Border::UPPER_RIGHT, nextPosition, _visionRadius) <= 0) ||
+            (Tools::distToBorder(Border::UPPER_RIGHT, Border::BOTTOM_RIGHT, nextPosition, _visionRadius) <= 0) ||
+            (Tools::distToBorder(Border::BOTTOM_RIGHT, Border::BOTTOM_LEFT, nextPosition, _visionRadius) <= 0) ||
+            (Tools::distToBorder(Border::BOTTOM_LEFT, Border::UPPER_LEFT, nextPosition, _visionRadius) <= 0))
+        _direction = Tools::randomDirection();
     _position += _direction * _moveSpeed;
 }

@@ -59,7 +59,10 @@ void GameWindow::initBorderShaderPrograme()
 {
 
     QVector<QVector3D> vec;
-    vec<<(QVector3D) _border.bottomLeft <<(QVector3D) _border.upperLeft << (QVector3D) _border.upperRight << (QVector3D) _border.bottomRight;
+    vec << (QVector3D) Border::BOTTOM_LEFT;
+    vec << (QVector3D) Border::UPPER_LEFT;
+    vec << (QVector3D) Border::UPPER_RIGHT;
+    vec << (QVector3D) Border::BOTTOM_RIGHT;
     size_t borderSize = vec.size()*sizeof(QVector3D);
 
     _borderProgram = new QOpenGLShaderProgram(this);

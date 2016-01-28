@@ -4,6 +4,8 @@
 
 class StateAgent
 {
+private:
+
 public:
     StateAgent();
     virtual void doAction();

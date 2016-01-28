@@ -1,6 +1,8 @@
 #ifndef TOOLS_H
 #define TOOLS_H
 
+#include <iostream>
+
 #include <QVector2D>
 #include <QVector3D>
 #include <cmath>
@@ -12,9 +14,9 @@ public:
     Tools();
 
     static bool isInRange(QVector3D position1, QVector3D position2, float dist);
-    static void rotOnZ(QVector2D &position, float angle);
-    static float distToBorder(QVector2D borderStart, QVector2D borderEnd, QVector2D playerPosition, float radius);
-//    static QVector<float> insidePolygon(QVector2D polygonPoints, QVector2D position);
+    static QVector2D rotOnZ(QVector2D direction, float angle);
+    static float distToBorder(QVector2D borderStart, QVector2D borderEnd, QVector3D playerPosition, float radius);
+    static QVector2D randomDirection();
 };
 
 #endif // TOOLS_H
