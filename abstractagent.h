@@ -11,6 +11,8 @@
 #include <cmath>
 
 #include "tools.h"
+#include "StateAgent/stateagent.h"
+#include "StateAgent/explore.h"
 
 class AbstractAgent
 {
@@ -20,6 +22,8 @@ private:
     float _vision;
     QVector2D _direction;
     QVector3D _position;
+
+    StateAgent* _state;
 public:
     AbstractAgent(int);
     QVector2D direction() const;
@@ -28,6 +32,8 @@ public:
     void setPosition(const QVector3D &position);
     int team() const;
     void update();
+    StateAgent *state() const;
+    void setState(StateAgent *state);
 };
 
 #endif // ABSTRACTAGENT_H

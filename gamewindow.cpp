@@ -130,7 +130,7 @@ void GameWindow::render(){
     {
         vec << agent->position();
         team << (float) agent->team();
-        qDebug()<<Tools::distToBorder(_border.bottomLeft, _border.upperLeft, agent->position().toVector2D(), 0.1);
+        agent->state()->doAction();
     }
 
     _playerProgram->bind();

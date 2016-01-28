@@ -13,7 +13,9 @@ SOURCES += main.cpp \
     gamewindow.cpp \
     tools.cpp \
     abstractagent.cpp \
-    overmind.cpp
+    overmind.cpp \
+    StateAgent/stateagent.cpp \
+    StateAgent/explore.cpp
 
 HEADERS += \
     openglwindow.h \
@@ -23,7 +25,9 @@ HEADERS += \
     cpplinq.hpp \
     abstractagent.h \
     overmind.h \
-    border.h
+    border.h \
+    StateAgent/stateagent.h \
+    StateAgent/explore.h
 RESOURCES += gestionnaire.qrc
 
 DISTFILES += \
@@ -31,3 +35,6 @@ DISTFILES += \
     player.frag \
     border.frag \
     border.vert
+
+
+

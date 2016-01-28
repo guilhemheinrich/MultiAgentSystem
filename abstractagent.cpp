@@ -1,10 +1,21 @@
 #include "abstractagent.h"
 
+StateAgent *AbstractAgent::state() const
+{
+    return _state;
+}
+
+void AbstractAgent::setState(StateAgent *state)
+{
+    _state = state;
+}
+
 AbstractAgent::AbstractAgent(int team)
 {
     _team = team;
     _moveSpeed = 0.01f;
     _vision = 0.1f;
+    _state = new Explore();
 
     float angle = std::rand() % 360 + 1;
     angle = (angle * M_PI) / 180.0;
