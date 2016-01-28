@@ -44,7 +44,7 @@ void GameWindow::initPlayerShaderPrograme()
     _playerVao.bind();
 
     _playerVbo.create();
-    _playerVbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
+    _playerVbo.setUsagePattern(QOpenGLBuffer::DynamicDraw);
     _playerVbo.bind();
 
     _playerProgram->enableAttributeArray(_playerPosAttr);
@@ -83,17 +83,16 @@ void GameWindow::initBorderShaderPrograme()
     _borderVbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     _borderVbo.bind();
 
+    _borderVbo.allocate(borderSize);
+
+    _borderVbo.bind();
+    _borderVbo.write(0,vec.constData(), borderSize);
+
     _borderProgram->setAttributeBuffer(_borderPosAttr, GL_FLOAT, 0, 3, 0);
     _borderProgram->enableAttributeArray(_borderPosAttr);
 
-    _borderVbo.allocate(borderSize);
-    _borderVbo.write(0,vec.constData(), borderSize);
-
-
     _borderVao.release();
     _borderProgram->release();
-
-
 }
 
 void GameWindow::render(){
