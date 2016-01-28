@@ -2,7 +2,6 @@
 #include "gamewindow.h"
 #include <QtGui/QGuiApplication>
 
-
 int main(int argc, char *argv[])
 {
     QGuiApplication a(argc, argv);

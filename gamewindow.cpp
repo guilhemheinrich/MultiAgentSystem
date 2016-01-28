@@ -22,10 +22,8 @@ GameWindow::~GameWindow()
 
 void GameWindow::initialize()
 {
+    initBorderShaderPrograme();
     initPlayerShaderPrograme();
-        initBorderShaderPrograme();
-
-
 }
 
 void GameWindow::initPlayerShaderPrograme()
@@ -133,6 +131,7 @@ void GameWindow::render(){
     {
         vec << agent->position();
         team << (float) agent->team();
+        qDebug()<<Tools::distToBorder(_border.bottomLeft, _border.upperLeft, agent->position().toVector2D(), 0.1);
     }
 
     _playerProgram->bind();
@@ -167,7 +166,7 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
     case Qt::Key_R:
         _overMind->initializeSimulation();
         break;
-    }
+    }//
 }
 
 void GameWindow::keyReleaseEvent(QKeyEvent *event)

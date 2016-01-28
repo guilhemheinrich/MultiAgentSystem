@@ -22,7 +22,8 @@ HEADERS += \
     cpplinq.hpp \
     cpplinq.hpp \
     abstractagent.h \
-    overmind.h
+    overmind.h \
+    border.h
 RESOURCES += gestionnaire.qrc
 
 DISTFILES += \
