@@ -36,3 +36,11 @@ QVector2D Tools::randomDirection()
     angle = (angle * M_PI) / 180.0;
     return rotOnZ(QVector2D(1, 0), angle);
 }
+
+//Return a direction according to a prefered direction and an angle window
+QVector2D Tools::randomDirection(QVector2D direction, int angleWindow)
+{
+    float angle = std::rand() % angleWindow + 1;
+    angle = (angle * M_PI) / 180.0;
+    return rotOnZ(direction, angle);
+}

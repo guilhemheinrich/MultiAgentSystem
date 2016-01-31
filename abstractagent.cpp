@@ -57,6 +57,6 @@ void AbstractAgent::update()
             (Tools::distToBorder(Border::UPPER_RIGHT, Border::BOTTOM_RIGHT, nextPosition, _visionRadius) <= 0) ||
             (Tools::distToBorder(Border::BOTTOM_RIGHT, Border::BOTTOM_LEFT, nextPosition, _visionRadius) <= 0) ||
             (Tools::distToBorder(Border::BOTTOM_LEFT, Border::UPPER_LEFT, nextPosition, _visionRadius) <= 0))
-        _direction = Tools::randomDirection();
+        _direction = Tools::randomDirection(_direction,90);
     _position += _direction * _moveSpeed;
 }

@@ -17,6 +17,7 @@ public:
     static QVector2D rotOnZ(QVector2D direction, float angle);
     static float distToBorder(QVector2D borderStart, QVector2D borderEnd, QVector3D playerPosition, float radius);
     static QVector2D randomDirection();
+    static QVector2D randomDirection(QVector2D direction, int angle);
 };
 
 #endif // TOOLS_H
